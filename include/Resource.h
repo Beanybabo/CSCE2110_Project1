@@ -11,6 +11,11 @@ class Resource{
         void Resource();
         void Resource(int identification, string resource_name, string resource_type, bool resource_availability);
         void Display();
+        void SetAvailability(bool new_available);
+        int GetId();
+        string GetName();
+        string GetType();
+        bool GetAvailable();
 
     private:
         // something to change availability status of resource
