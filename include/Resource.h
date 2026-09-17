@@ -8,8 +8,8 @@ using namespace std;
 class Resource{
     public:
         // info about the object or something
-        void Resource();
-        void Resource(int identification, string resource_name, string resource_type, bool resource_availability);
+        Resource();
+        Resource(int identification, string resource_name, string resource_type, bool resource_availability);
         void Display();
         void SetAvailability(bool new_available);
         int GetId();
@@ -23,7 +23,7 @@ class Resource{
         string name;
         string type;
         bool available;
-}
+};
 
 
 #endif

@@ -1,22 +1,23 @@
 #include "resource.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
-void Resource() {
+Resource::Resource() {
     id = 0;
     name = "";
     type = "";
     available = false;
 }
 
-void Resource(int identification, string resource_name, string resource_type, bool resource_availability) {
+Resource::Resource(int identification, string resource_name, string resource_type, bool resource_availability) {
     id = identification;
     name = resource_name;
     type = resource_type;
     available = resource_availability;
 }
 
-void Display() {
+void Resource::Display() {
     cout << "ID: " << id << endl;
     cout << "Name: " << name << endl;
     cout << "Type: " << type << endl;
@@ -29,19 +30,19 @@ void Display() {
     
 }
 
-void SetAvailability(bool new_available) {
-    available = new_available
+void Resource::SetAvailability(bool new_available) {
+    available = new_available;
 }
 
-int GetId() {
+int Resource::GetId() {
     return id;
 }
-string GetName() {
+string Resource::GetName() {
     return name;
 }
-string GetType() {
+string Resource::GetType() {
     return type;
 }
-bool GetAvailable() {
+bool Resource::GetAvailable() {
     return available;
 }

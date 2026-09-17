@@ -8,8 +8,8 @@ using namespace std;
 class Reservation{
     public:
         // info about the object or something
-        void Reservation();
-        void Reservation(int reser_id, int stude_id, string stude_name, int resou_id, string dat);
+        Reservation();
+        Reservation(int reser_id, int stude_id, string stude_name, int resou_id, string dat);
         void Display();
 
         int GetReseId();
@@ -25,7 +25,7 @@ class Reservation{
         string student_name;
         int resource_id;
         string date;
-}
+};
 
 
 #endif

@@ -1,22 +1,23 @@
 #include "reservation.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
-void Reservation() {
+Reservation::Reservation() {
     reservation_id = 0;
     student_id = 0;
     student_name = "";
     resource_id = 0;
     date = "";
 }
-void Reservation(int reser_id, int stude_id, string stude_name, int resou_id, string dat) {
+Reservation::Reservation(int reser_id, int stude_id, string stude_name, int resou_id, string dat) {
     reservation_id = reser_id;
     student_id = stude_id;
     student_name = stude_name;
     resource_id = resou_id;
     date = dat;
 }
-void Display() {
+void Reservation::Display() {
     cout << "Reservation ID: " << reservation_id << endl;
     cout << "Student ID: " << student_id << endl;
     cout << "Student Name: " << student_name << endl;
@@ -24,18 +25,18 @@ void Display() {
     cout << "Reservation Date: " << date << endl;
 }
 
-int GetReseId() {
+int Reservation::GetReseId() {
     return reservation_id;
 }
-int GetStuId() {
+int Reservation::GetStuId() {
     return student_id;
 }
-string GetStuNam() {
+string Reservation::GetStuNam() {
     return student_name;
 }
-int GetResoId() {
+int Reservation::GetResoId() {
     return resource_id;
 }
-string GetDate() {
+string Reservation::GetDate() {
     return date;
 }

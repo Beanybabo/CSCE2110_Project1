@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <string>
 #include "resource.h"
 #include "reservation.h"
 #include "reservationmanager.h"
@@ -32,13 +33,9 @@ int main()
         cout << "8. Generate Report" << endl; // undefined?
         cout << "9. Exit" << endl;
         cout << "Enter Choice:" << endl;
-        try{
-            cin >> choice;
-        }
-        except{
-            cout << "Invalid input" << endl;
-            continue;
-        }
+        if(!(cin >> choice)){
+			cout << "Invalid input" << endl;
+			continue;
         if(choice == 1){
             continue; // view resources
         }else if(choice == 2){
