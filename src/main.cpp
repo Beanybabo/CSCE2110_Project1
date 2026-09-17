@@ -3,6 +3,10 @@
 #include "resource.h"
 #include "reservation.h"
 #include "reservationmanager.h"
+#include "waitinglist.h"
+#include "student.h"
+#include "cancellationhistory.h"
+#include "reportgenerator.h"
 
 
 using namespace std;
