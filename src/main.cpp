@@ -15,14 +15,17 @@ int main()
     while(running)
     {
         cout << "Campus Resource Reservation System" << endl;
-        cout << "1. View Resources" << endl;
-        cout << "2. Create Reservation" << endl;
-        cout << "3. Cancel Reservation" << endl;
-        cout << "4. View Waiting Lists" << endl;
-        cout << "5. Undo Cancellation" << endl;
-        cout << "6. Search Reservations" << endl;
-        cout << "7. Sort Resources" << endl;
-        cout << "8. Generate Report" << endl;
+        cout << "1. View Resources" << endl; // display availability as well
+        // another to search for resources
+        cout << "2. Create Reservation" << endl; // linked list - into queue?
+        cout << "3. Cancel Reservation" << endl; // linked list - into queue and stack?
+        // another to view active reservations
+        cout << "4. View Waiting Lists" << endl; // queue
+        cout << "5. Undo Cancellation" << endl; // stack
+        // another to display cancellation history
+        cout << "6. Search Reservations" << endl; // linked list
+        cout << "7. Sort Resources" << endl; // undefined?
+        cout << "8. Generate Report" << endl; // undefined?
         cout << "9. Exit" << endl;
         cout << "Enter Choice:" << endl;
         try{
