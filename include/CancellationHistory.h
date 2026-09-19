@@ -1,5 +1,5 @@
-
-#
+#ifndef CancellationHistory_H
+#define CancellationHistory_H
 
 #include <iostream>
 #include <stack>
@@ -10,7 +10,7 @@ using namespace std;
 class CancellationHistory {
 public:
 	void AddCancellation(Reservation reservation);
-	void RestoreCancellation();
+	Reservation RestoreCancellation();
 	void DisplayHistory();
 
 private:
