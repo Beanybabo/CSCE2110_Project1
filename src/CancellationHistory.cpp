@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void CancellationHistory::AddCancelation(Reservation reservation) {
+void CancellationHistory::AddCancellation(Reservation reservation) {
 	cancelledReservations.push(reservation); 
 }
 Reservation CancellationHistory::RestoreCancellation() {

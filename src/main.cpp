@@ -1,14 +1,12 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "resource.h"
-#include "reservation.h"
-#include "reservationmanager.h"
-#include "waitinglist.h"
-#include "student.h"
-#include "cancellationhistory.h"
-#include "reportgenerator.h"
-
+#include "CancellationHistory.h"
+#include "Reservation.h"
+#include "ReservationManager.h"
+#include "Resource.h"
+#include "Student.h"
+#include "WaitingList.h"
 
 using namespace std;
 

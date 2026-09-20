@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <string>
-#include "student.h"
+#include "Student.h"
 
 Student::Student() {
 	id = 0;
