@@ -17,7 +17,7 @@ bool ReservationManager::ValidateRequest(int reser_id, int stude_id, int resou_i
     }
 
     if (activeReservations.IsResourceBooked(resou_id, date)) {
-        cout << "Resource " << resou_id << " is already booked for " << date << "./\n";
+        cout << "Resource " << resou_id << " is already booked for " << date << ".\n";
         return false;
     }
     return true;
@@ -51,4 +51,14 @@ void ReservationManager::DisplayReservations() const {
 
 Reservation* ReservationManager::SearchReservation(int reser_id) const {
     return activeReservations.Find(reser_id);
+}
+
+bool ReservationManager::RestoreReservation(Reservation reservation) {
+    if(activeReservations.Exists(reservation.GetReseId())) {
+        cout << "Reservation ID " << reservation.GetReseId() << " already exists.\n";
+        return false;
+    }
+
+    activeReservations.Insert(reservation);
+    return true;
 }

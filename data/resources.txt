@@ -1,0 +1,6 @@
+101|Study Room A|Study Room|1
+102|Study Room B|Study Room|1
+103|Dell Laptop|Laptop|1
+104|TI-84 Calculator|Calculator|0
+105|Microscope|Lab Equipment|1
+106|Tutoring Room 1|Tutoring Appointment|1

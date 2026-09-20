@@ -6,14 +6,16 @@ using namespace std;
 void CancellationHistory::AddCancellation(Reservation reservation) {
 	cancelledReservations.push(reservation); 
 }
-Reservation CancellationHistory::RestoreCancellation() {
-	if (!cancelledReservations.empty()) {
-		Reservation reservation = cancelledReservations.top();
-		cancelledReservations.pop();
-		return reservation;
-	}
-		
-	return Reservation();	
+bool CancellationHistory::RestoreCancellation(Reservation& reservation) {
+    if(cancelledReservations.empty()) {
+        cout << "Cancellation history is empty.\n";
+        return false;
+    }
+
+    reservation = cancelledReservations.top();
+    cancelledReservations.pop();
+
+    return true;
 }
 
 

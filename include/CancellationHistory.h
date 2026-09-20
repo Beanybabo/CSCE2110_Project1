@@ -10,7 +10,7 @@ using namespace std;
 class CancellationHistory {
 public:
 	void AddCancellation(Reservation reservation);
-	Reservation RestoreCancellation();
+	bool RestoreCancellation(Reservation& reservation);
 	void DisplayHistory();
 
 private:

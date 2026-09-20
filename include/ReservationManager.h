@@ -23,6 +23,8 @@ public:
 
     Reservation* SearchReservation(int reser_id) const;
 
+    bool RestoreReservation(Reservation reservation);
+
 private:
     ReservationList activeReservations;
 };
