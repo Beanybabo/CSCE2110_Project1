@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <stack>
-#include "reservation.h"
+#include "Reservation.h"
 
 using namespace std;
 

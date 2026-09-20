@@ -1,9 +1,10 @@
-#include <iostream>
-#include <queue>
-#include "student.h"
-using namespace std;
 #ifndef WAITINGLIST_H
 #define WAITINGLIST_H
+
+#include <iostream>
+#include <queue>
+#include "Student.h"
+using namespace std;
 
 class WaitingList {
 public:

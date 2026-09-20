@@ -1,9 +1,9 @@
 #ifndef RESERVATOINMANAGER_H
 #define RESERVATIONMANAGER_H
 
-#include <vector>
 #include <string>
 #include "Reservation.h"
+#include "ReservationList.h"
 
 class ReservationManager{
 public:
@@ -13,7 +13,7 @@ public:
     bool CreateReservation(int reser_id, int stude_id, std::string stude_name, int resou_id, std::string date);
 
     // cancels a reservation by its reservation id
-    bool CancelReservation(int reser_id);
+    bool CancelReservation(int reser_id, Reservation* cancelledRes = nullptr);
 
     // prints current reservations
     void DisplayReservations() const;
@@ -21,10 +21,10 @@ public:
     // checks if a resource is free on the requested data and inputs are positive
     bool ValidateRequest(int reser_id, int stude_id, int resou_id, const std::string& date) const;
 
-    int FindReservationIndex(int reser_id) const;
+    Reservation* SearchReservation(int reser_id) const;
 
 private:
-    std::vector<Reservation> reservations;
+    ReservationList activeReservations;
 };
 
 #endif
