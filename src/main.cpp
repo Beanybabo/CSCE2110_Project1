@@ -64,6 +64,7 @@ int main()
             cin.clear();
             cin.ignore(1000, '\n');
 			continue;
+        }
         if(choice == 1){
             if(resources.empty()) {
                 cout << "No resources found." << endl;
@@ -75,7 +76,7 @@ int main()
                 }
             }
         }
-        }else if(choice == 2){
+        else if(choice == 2){
             int reservationId;
             int studentId;
             string studentName;
