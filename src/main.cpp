@@ -2,12 +2,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "CancellationHistory.h"
-#include "Reservation.h"
-#include "ReservationManager.h"
-#include "Resource.h"
-#include "Student.h"
-#include "WaitingList.h"
+#include "../include/Resource.h"
+#include "../include/Student.h"
+#include "../include/WaitingList.h"
+#include "../include/CancellationHistory.h"
+#include "../include/Reservation.h"
+#include "../include/ReservationManager.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ int main()
     int choice = 0;
     vector<Resource> resources;
 
-    ifstream resourceFile("resources.txt");
+    ifstream resourceFile("../data/resources.txt");
 
     if(!resourceFile.is_open()) {
         cout << "Error opening resources.txt" << endl;
@@ -50,7 +50,7 @@ int main()
         cout << "1. View Resources" << endl; // display availability as well
         cout << "2. Create Reservation" << endl; // linked list - into queue?
         cout << "3. Cancel Reservation" << endl; // linked list - into queue and stack?
-        cout << "4. View Active Reseervations" << endl;
+        cout << "4. View Active Reservations" << endl;
         cout << "5. View Waiting Lists" << endl; // queue
         cout << "6. Undo Cancellation" << endl; // stack
         cout << "7. View Cancellation History" << endl;
