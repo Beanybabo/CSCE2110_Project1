@@ -54,10 +54,11 @@ int main()
         cout << "5. View Waiting Lists" << endl; // queue
         cout << "6. Undo Cancellation" << endl; // stack
         cout << "7. View Cancellation History" << endl;
-        //cout << "6. Search Reservations" << endl; // linked list
+        cout << "8. Search Reservations" << endl; // linked list
+		cout << "9. Search Resources" << endl;
         //cout << "7. Sort Resources" << endl; // undefined?
         //cout << "8. Generate Report" << endl; // undefined?
-        cout << "8. Exit" << endl;
+        cout << "10. Exit" << endl;
         cout << "Enter Choice:" << endl;
         if(!(cin >> choice)){
 			cout << "Invalid input" << endl;
@@ -121,7 +122,8 @@ int main()
             else {
                 reservationManager.CreateReservation(reservationId, studentId, studentName, resourceId, date); // works
             }
-        }else if(choice == 3){
+        }
+		else if(choice == 3){
             int reservationId;
 
             cout << "Reservation ID: ";
@@ -133,11 +135,14 @@ int main()
                 cancellationHistory.AddCancellation(cancelledReservation);
                 cout << "Added to cancellation history." << endl;
             }
-        }else if(choice == 4){
+        }
+		else if(choice == 4){
             reservationManager.DisplayReservations(); // thank goodness its a one line function
-        }else if(choice == 5){
+        }
+		else if(choice == 5){
             waitingList.DisplayWaitingList();
-        }else if(choice == 6){
+        }
+		else if(choice == 6){
             Reservation restoredReservation; // hold reservation to hand from cancellation to restoration
 
             if(cancellationHistory.RestoreCancellation(restoredReservation)) { // if it has something to restore
@@ -145,11 +150,44 @@ int main()
                     cout << "Reservation restored successfully." << endl;
                 }
             }
-        }else if(choice == 7){
+        }
+		else if(choice == 7){
             cancellationHistory.DisplayHistory();
-        }else if(choice == 8){
+        }
+		else if(choice == 8){
+			int reservationId;
+            // search for reservation by ID
+			cout << "Reservation ID: ";
+			cin >> reservationId;
+			
+			Reservation searchedReservation;
+			
+			searchedReservation = reservationManager.SearchReservation(reservationId);
+			
+			searchedReservation.Display();
+        }
+		else if(choice == 9){
+			int resourceID;
+			bool found = false;
+            // search for resource by ID
+			cout << "Resource ID: ";
+			cin >> resourceID;
+			
+			for(int i = 0; i < resources.size(); i++) {
+				if(resources[i].GetId() == resourceID) {
+					resources[i].Display();
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				cout << "Invalid Resource ID" << endl;
+			}
+        }
+		else if(choice == 10){
             running = false;
-        }else{
+        }
+		else{
             cout << "Invalid input" << endl;
             continue;
         }
