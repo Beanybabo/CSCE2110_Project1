@@ -17,7 +17,7 @@ Resource::Resource(int identification, string resource_name, string resource_typ
     available = resource_availability;
 }
 
-void Resource::Display() {
+void Resource::Display() const {
     cout << "ID: " << id << endl;
     cout << "Name: " << name << endl;
     cout << "Type: " << type << endl;
@@ -34,15 +34,15 @@ void Resource::SetAvailability(bool new_available) {
     available = new_available;
 }
 
-int Resource::GetId() {
+int Resource::GetId() const {
     return id;
 }
-string Resource::GetName() {
+string Resource::GetName() const {
     return name;
 }
-string Resource::GetType() {
+string Resource::GetType() const {
     return type;
 }
-bool Resource::GetAvailable() {
+bool Resource::GetAvailable() const {
     return available;
 }

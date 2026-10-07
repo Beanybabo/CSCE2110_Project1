@@ -16,7 +16,5 @@ public:
 private:
 	stack<Reservation> cancelledReservations;
 
-
-
 };
 #endif

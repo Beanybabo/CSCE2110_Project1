@@ -17,7 +17,7 @@ Reservation::Reservation(int reser_id, int stude_id, string stude_name, int reso
     resource_id = resou_id;
     date = dat;
 }
-void Reservation::Display() {
+void Reservation::Display() const {
     cout << "Reservation ID: " << reservation_id << endl;
     cout << "Student ID: " << student_id << endl;
     cout << "Student Name: " << student_name << endl;
@@ -25,18 +25,18 @@ void Reservation::Display() {
     cout << "Reservation Date: " << date << endl;
 }
 
-int Reservation::GetReseId() {
+int Reservation::GetReseId() const {
     return reservation_id;
 }
-int Reservation::GetStuId() {
+int Reservation::GetStuId() const {
     return student_id;
 }
-string Reservation::GetStuNam() {
+string Reservation::GetStuNam() const {
     return student_name;
 }
-int Reservation::GetResoId() {
+int Reservation::GetResoId() const {
     return resource_id;
 }
-string Reservation::GetDate() {
+string Reservation::GetDate() const {
     return date;
 }

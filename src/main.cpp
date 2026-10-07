@@ -2,12 +2,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "../include/Resource.h"
-#include "../include/Student.h"
-#include "../include/WaitingList.h"
-#include "../include/CancellationHistory.h"
-#include "../include/Reservation.h"
-#include "../include/ReservationManager.h"
+#include "Resource.h"
+#include "Student.h"
+#include "WaitingList.h"
+#include "CancellationHistory.h"
+#include "Reservation.h"
+#include "ReservationManager.h"
+#include "ReportGenerator.h"
 
 using namespace std;
 
@@ -18,6 +19,10 @@ int main()
     vector<Resource> resources;
 
     ifstream resourceFile("../data/resources.txt");
+    if(!resourceFile.is_open()) {
+        resourceFile.clear();
+        resourceFile.open("data/resources.txt");
+    }
 
     if(!resourceFile.is_open()) {
         cout << "Error opening resources.txt" << endl;
@@ -43,6 +48,7 @@ int main()
     ReservationManager reservationManager;
     WaitingList waitingList;
     CancellationHistory cancellationHistory;
+    ReportGenerator reportGenerator;
 
     while(running)
     {
@@ -56,9 +62,8 @@ int main()
         cout << "7. View Cancellation History" << endl;
         cout << "8. Search Reservations" << endl; // linked list
 		cout << "9. Search Resources" << endl;
-        //cout << "7. Sort Resources" << endl; // undefined?
-        //cout << "8. Generate Report" << endl; // undefined?
-        cout << "10. Exit" << endl;
+        cout << "10. Generate Reports" << endl;
+        cout << "11. Exit" << endl;
         cout << "Enter Choice:" << endl;
         if(!(cin >> choice)){
 			cout << "Invalid input" << endl;
@@ -115,7 +120,7 @@ int main()
                 cout << "Resource is unavailable." << endl; // added to queue
 
                 Student student(studentId, studentName);
-                waitingList.AddStudent(student);
+                waitingList.AddStudent(student, resourceId);
 
                 cout << "Added to waiting list." << endl;
             }
@@ -160,11 +165,14 @@ int main()
 			cout << "Reservation ID: ";
 			cin >> reservationId;
 			
-			Reservation searchedReservation;
-			
-			searchedReservation = reservationManager.SearchReservation(reservationId);
-			
-			searchedReservation.Display();
+			Reservation* searchedReservation = reservationManager.SearchReservation(reservationId);
+
+			if(searchedReservation != nullptr) {
+				searchedReservation->Display();
+			}
+			else {
+				cout << "Reservation not found." << endl;
+			}
         }
 		else if(choice == 9){
 			int resourceID;
@@ -185,6 +193,9 @@ int main()
 			}
         }
 		else if(choice == 10){
+            reportGenerator.GenerateAllReports(resources, reservationManager, waitingList);
+        }
+		else if(choice == 11){
             running = false;
         }
 		else{
@@ -193,7 +204,6 @@ int main()
         }
 
     }
-
 
     return 0;
 }

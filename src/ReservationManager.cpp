@@ -62,3 +62,7 @@ bool ReservationManager::RestoreReservation(Reservation reservation) {
     activeReservations.Insert(reservation);
     return true;
 }
+
+vector<int> ReservationManager::GetReservedResourceIds() const {
+    return activeReservations.GetResourceIds();
+}

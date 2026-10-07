@@ -10,12 +10,12 @@ class Resource{
         // info about the object or something
         Resource();
         Resource(int identification, string resource_name, string resource_type, bool resource_availability);
-        void Display();
+        void Display() const;
         void SetAvailability(bool new_available);
-        int GetId();
-        string GetName();
-        string GetType();
-        bool GetAvailable();
+        int GetId() const;
+        string GetName() const;
+        string GetType() const;
+        bool GetAvailable() const;
 
     private:
         // something to change availability status of resource
