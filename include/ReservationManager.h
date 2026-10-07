@@ -1,7 +1,8 @@
-#ifndef RESERVATOINMANAGER_H
+#ifndef RESERVATIONMANAGER_H
 #define RESERVATIONMANAGER_H
 
 #include <string>
+#include <vector>
 #include "Reservation.h"
 #include "ReservationList.h"
 
@@ -24,6 +25,9 @@ public:
     Reservation* SearchReservation(int reser_id) const;
 
     bool RestoreReservation(Reservation reservation);
+
+    // resource ids of all active reservations (used by reports)
+    std::vector<int> GetReservedResourceIds() const;
 
 private:
     ReservationList activeReservations;

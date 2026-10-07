@@ -10,13 +10,13 @@ class Reservation{
         // info about the object or something
         Reservation();
         Reservation(int reser_id, int stude_id, string stude_name, int resou_id, string dat);
-        void Display();
+        void Display() const;
 
-        int GetReseId();
-        int GetStuId();
-        string GetStuNam();
-        int GetResoId();
-        string GetDate();
+        int GetReseId() const;
+        int GetStuId() const;
+        string GetStuNam() const;
+        int GetResoId() const;
+        string GetDate() const;
 
     private:
         // something to change availability status of resource
@@ -26,6 +26,5 @@ class Reservation{
         int resource_id;
         string date;
 };
-
 
 #endif

@@ -114,6 +114,16 @@ Reservation* ReservationList::Find(int reser_id) const {
     return nullptr;
 }
 
+vector<int> ReservationList::GetResourceIds() const {
+    vector<int> ids;
+    Node* current = head;
+    while (current != nullptr) {
+        ids.push_back(current->data.GetResoId());
+        current = current->next;
+    }
+    return ids;
+}
+
 bool ReservationList::isEmpty() const {
     return head == nullptr;
 }

@@ -3,23 +3,26 @@
 
 #include <iostream>
 #include <queue>
+#include <vector>
 #include "Student.h"
 using namespace std;
 
 class WaitingList {
 public:
-    // info about the object or something
-    void Request(); // have student + resource type
-    void AddStudent(Student student);
+    // adds a student to the back of the line, waiting on the given resource
+    void AddStudent(Student student, int resourceId);
+    // removes the student at the front of the line
     void RemoveStudent();
-    void DisplayWaitingList();
+    void DisplayWaitingList() const;
+
+    // resource ids that students are waiting on (one entry per waiting student)
+    vector<int> GetResourceIds() const;
+    int GetSize() const;
 
 private:
-    // something to change availability status of resource
-    //queue of students
-    // matching queue of resource types
     queue<Student> waitingStudents;
-
+    // matching queue of resource ids (same order as waitingStudents)
+    queue<int> waitingResourceIds;
 };
 
 #endif

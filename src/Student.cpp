@@ -11,13 +11,13 @@ Student::Student(int stu_id, string stu_name) {
 	id = stu_id;
 	name = stu_name;
 }
-void Student::Display() {
+void Student::Display() const {
 	cout << "ID: " << id << endl;
 	cout << "Name: " << name << endl;
 }
-int Student::GetId() {
+int Student::GetId() const {
 	return id;
 }
-string Student::GetName() {
+string Student::GetName() const {
 	return name;
 }

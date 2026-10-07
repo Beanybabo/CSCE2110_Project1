@@ -10,15 +10,14 @@ class Student{
         // info about the object or something
         Student();
         Student(int stu_id, string stu_name);
-        void Display();
-        int GetId();
-        string GetName();
+        void Display() const;
+        int GetId() const;
+        string GetName() const;
 
     private:
         // something to change availability status of resource
         int id;
         string name;
 };
-
 
 #endif

@@ -1,6 +1,8 @@
 #ifndef RESERVATIONLIST_H
 #define RESERVATIONLIST_H
 
+#include <string>
+#include <vector>
 #include "Reservation.h"
 
 struct Node{
@@ -26,6 +28,9 @@ public:
     bool IsResourceBooked(int resou_id, const std::string& date) const;
     //search by reservation id
     Reservation* Find(int reser_id) const;
+
+    //resource ids of all active reservations (one entry per reservation)
+    std::vector<int> GetResourceIds() const;
 
     bool isEmpty() const;
     int GetCount() const;
