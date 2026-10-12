@@ -1,6 +1,7 @@
 #include "Reservation.h"
 #include <iostream>
 #include <string>
+#include "InputHelper.h"
 using namespace std;
 
 Reservation::Reservation() {
@@ -21,7 +22,7 @@ void Reservation::Display() const {
     cout << "Reservation ID: " << reservation_id << endl;
     cout << "Student ID: " << student_id << endl;
     cout << "Student Name: " << student_name << endl;
-    cout << "Resource ID: " << resource_id << endl;
+    cout << "Resource ID: " << InputHelper::FormatResourceId(resource_id) << endl;
     cout << "Reservation Date: " << date << endl;
 }
 
