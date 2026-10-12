@@ -1,8 +1,9 @@
 #include "ReportGenerator.h"
+#include "InputHelper.h"
 
 int ReportGenerator::CountFor(const vector<int>& ids, int resourceId) const {
     int count = 0;
-    for (int i = 0; i < ids.size(); i++) {
+    for (size_t i = 0; i < ids.size(); i++) {
         if (ids[i] == resourceId) {
             count++;
         }
@@ -15,7 +16,7 @@ vector<int> ReportGenerator::ReservedResourceIds(const ReservationManager& manag
 }
 
 string ReportGenerator::NameFor(const vector<Resource>& resources, int resourceId) const {
-    for (int i = 0; i < resources.size(); i++) {
+    for (size_t i = 0; i < resources.size(); i++) {
         if (resources[i].GetId() == resourceId) {
             return resources[i].GetName();
         }
@@ -39,9 +40,9 @@ void ReportGenerator::ResourceUtilizationReport(const vector<Resource>& resource
     PrintHeader("Resource Utilization Report");
     vector<int> reserved = ReservedResourceIds(manager);
 
-    for (int i = 0; i < resources.size(); i++) {
+    for (size_t i = 0; i < resources.size(); i++) {
         int count = CountFor(reserved, resources[i].GetId());
-        cout << resources[i].GetName() << " (ID " << resources[i].GetId() << "): " << count << " active reservation(s)\n";
+        cout << resources[i].GetName() << " (ID " << InputHelper::FormatResourceId(resources[i].GetId()) << "): " << count << " active reservation(s)\n";
     }
 }
 
@@ -54,10 +55,10 @@ void ReportGenerator::MostRequestedReport(const vector<Resource>& resources, con
     int bestTotal = 0;
 
     // total requests = active reservations + students waiting for the resource
-    for (int i = 0; i < resources.size(); i++) {
+    for (size_t i = 0; i < resources.size(); i++) {
         int id = resources[i].GetId();
         int total = CountFor(reserved, id) + CountFor(waiting, id);
-        cout << resources[i].GetName() << " (ID " << id << "): " << total << " request(s)\n";
+        cout << resources[i].GetName() << " (ID " << InputHelper::FormatResourceId(id) << "): " << total << " request(s)\n";
         if (total > bestTotal) {
             bestTotal = total;
             bestId = id;
@@ -78,7 +79,7 @@ void ReportGenerator::WaitingListStatisticsReport(const vector<Resource>& resour
 
     cout << "Students waiting: " << waitingList.GetSize() << "\n";
 
-    for (int i = 0; i < resources.size(); i++) {
+    for (size_t i = 0; i < resources.size(); i++) {
         int count = CountFor(waiting, resources[i].GetId());
         if (count > 0) {
             cout << resources[i].GetName() << ": " << count << " waiting\n";

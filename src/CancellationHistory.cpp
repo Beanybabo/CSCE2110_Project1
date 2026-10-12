@@ -4,8 +4,9 @@
 using namespace std;
 
 void CancellationHistory::AddCancellation(Reservation reservation) {
-	cancelledReservations.push(reservation); 
+	cancelledReservations.push(reservation);
 }
+
 bool CancellationHistory::RestoreCancellation(Reservation& reservation) {
     if(cancelledReservations.empty()) {
         cout << "Cancellation history is empty.\n";
@@ -19,11 +20,18 @@ bool CancellationHistory::RestoreCancellation(Reservation& reservation) {
 }
 
 
-void CancellationHistory::DisplayHistory() {
+void CancellationHistory::DisplayHistory() const {
+	if (cancelledReservations.empty()) {
+		cout << "Cancellation history is empty.\n";
+		return;
+	}
+
+	cout << "--- Cancellation History (most recent first) ---\n";
 	stack<Reservation> temp = cancelledReservations;
 
 	while (!temp.empty()) {
-			temp.top().Display();
-			temp.pop();
+		temp.top().Display();
+		cout << "---------------------\n";
+		temp.pop();
 	}
 }

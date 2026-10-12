@@ -3,7 +3,7 @@
 
 using namespace std;
 
-ReservationList::ReservationList() : head(nullptr), count(0) {}
+ReservationList::ReservationList() : head(nullptr), tail(nullptr), count(0) {}
 
 ReservationList::~ReservationList() {
     Node* current = head;
@@ -21,12 +21,9 @@ void ReservationList::Insert(Reservation res) {
         head = newNode;
     }
     else {
-        Node* temp = head;
-        while (temp->next != nullptr) {
-            temp = temp->next;
-        }
-        temp->next = newNode;
+        tail->next = newNode;
     }
+    tail = newNode;
     count++;
 }
 
@@ -42,6 +39,9 @@ bool ReservationList::Remove(int reser_id, Reservation* removedRes) {
             *removedRes = head->data;
         }
         head = head->next;
+        if (head == nullptr) {
+            tail = nullptr;
+        }
         delete toDelete;
         count--;
         return true;
@@ -59,6 +59,9 @@ bool ReservationList::Remove(int reser_id, Reservation* removedRes) {
             *removedRes = toDelete->data;
         }
         current->next = toDelete->next;
+        if (toDelete == tail) {
+            tail = current;
+        }
         delete toDelete;
         count--;
         return true;
