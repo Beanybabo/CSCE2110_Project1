@@ -1,6 +1,66 @@
 #include "ReportGenerator.h"
 #include "InputHelper.h"
 
+
+// Merge Sort
+// Used by MostRequestedReport to rank resources by popularity
+namespace {
+
+struct ResourceRank {
+    string name;
+    int id;
+    int total;   // active reservations and students waiting
+};
+
+// returns true if a should come before b:
+bool RanksBefore(const ResourceRank& a, const ResourceRank& b) {
+    if (a.total != b.total) {
+        return a.total > b.total;
+    }
+    return a.name <= b.name;
+}
+
+// merges the two sorted halves [left..mid] and [mid+1..right]
+void Merge(vector<ResourceRank>& items, int left, int mid, int right) {
+    vector<ResourceRank> temp;
+    temp.reserve(right - left + 1);
+
+    int i = left;
+    int j = mid + 1;
+
+    while (i <= mid && j <= right) {
+        if (RanksBefore(items[i], items[j])) {
+            temp.push_back(items[i++]);
+        }
+        else {
+            temp.push_back(items[j++]);
+        }
+    }
+    while (i <= mid) {
+        temp.push_back(items[i++]);
+    }
+    while (j <= right) {
+        temp.push_back(items[j++]);
+    }
+
+    for (size_t k = 0; k < temp.size(); k++) {
+        items[left + k] = temp[k];
+    }
+}
+
+// splits the range in half, sorts each half, then merges them
+void MergeSort(vector<ResourceRank>& items, int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    int mid = left + (right - left) / 2;
+    MergeSort(items, left, mid);
+    MergeSort(items, mid + 1, right);
+    Merge(items, left, mid, right);
+}
+
+}
+
 int ReportGenerator::CountFor(const vector<int>& ids, int resourceId) const {
     int count = 0;
     for (size_t i = 0; i < ids.size(); i++) {
@@ -51,25 +111,30 @@ void ReportGenerator::MostRequestedReport(const vector<Resource>& resources, con
     vector<int> reserved = ReservedResourceIds(manager);
     vector<int> waiting = waitingList.GetResourceIds();
 
-    int bestId = -1;
-    int bestTotal = 0;
-
     // total requests = active reservations + students waiting for the resource
+    vector<ResourceRank> ranked;
     for (size_t i = 0; i < resources.size(); i++) {
-        int id = resources[i].GetId();
-        int total = CountFor(reserved, id) + CountFor(waiting, id);
-        cout << resources[i].GetName() << " (ID " << InputHelper::FormatResourceId(id) << "): " << total << " request(s)\n";
-        if (total > bestTotal) {
-            bestTotal = total;
-            bestId = id;
-        }
+        ResourceRank entry;
+        entry.id = resources[i].GetId();
+        entry.name = resources[i].GetName();
+        entry.total = CountFor(reserved, entry.id) + CountFor(waiting, entry.id);
+        ranked.push_back(entry);
     }
 
-    if (bestId == -1) {
+    // sort resources by popularity (most requested first) using merge sort
+    if (!ranked.empty()) {
+        MergeSort(ranked, 0, (int)ranked.size() - 1);
+    }
+
+    for (size_t i = 0; i < ranked.size(); i++) {
+        cout << (i + 1) << ". " << ranked[i].name << " (ID " << InputHelper::FormatResourceId(ranked[i].id) << "): " << ranked[i].total << " request(s)\n";
+    }
+
+    if (ranked.empty() || ranked[0].total == 0) {
         cout << "No requests yet.\n";
     }
     else {
-        cout << "\nMost requested: " << NameFor(resources, bestId) << " (" << bestTotal << " requests)\n";
+        cout << "\nMost requested: " << ranked[0].name << " (" << ranked[0].total << " requests)\n";
     }
 }
 
