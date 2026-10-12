@@ -22,10 +22,10 @@ void Resource::Display() const {
     cout << "Name: " << name << endl;
     cout << "Type: " << type << endl;
     if(available){
-        cout << "Availablility: available" << endl;
+        cout << "Availability: available" << endl;
     }
     else{
-        cout << "Availablility: unavailable" << endl;
+        cout << "Availability: unavailable" << endl;
     }
     
 }
